@@ -1,8 +1,10 @@
 package dev.entite.forum;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import dev.entite.BaseEntite;
 import dev.entite.Utilisateur;
+import dev.views.Views;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -15,12 +17,10 @@ public class Topic extends BaseEntite {
 
     private String libelle;
     @ManyToOne
-    @JsonIgnore
     private Utilisateur utilisateur;
     @OneToMany(mappedBy = "topic")
     private List<Post> posts = new ArrayList<>();
     @ManyToOne
-    @JsonIgnore
     private Rubrique rubrique;
 
     // Constructeur

@@ -5,10 +5,11 @@ import javax.validation.constraints.NotBlank;
 public class PostDTO {
     @NotBlank
     private String content;
+
     @NotBlank
-    private String utilisateur;
+    private Integer utilisateur;
     @NotBlank
-    private String topic;
+    private Integer topic;
 
     public PostDTO() {
     }
@@ -21,19 +22,21 @@ public class PostDTO {
         this.content = content;
     }
 
-    public String getUtilisateur() {
+    public Integer getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(String utilisateur) {
+    public void setUtilisateur(Integer utilisateur) {
         this.utilisateur = utilisateur;
     }
 
-    public String getTopic() {
+    public Integer getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
+    public void setTopic(Integer topic) {
         this.topic = topic;
     }
+
+
 }

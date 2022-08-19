@@ -6,7 +6,7 @@ public class TopicDTO {
     @NotBlank
     private String libelle;
     @NotBlank
-    private String utilisateur;
+    private Integer utilisateur;
     @NotBlank
     private Integer rubrique;
 
@@ -21,11 +21,11 @@ public class TopicDTO {
         this.libelle = libelle;
     }
 
-    public String getUtilisateur() {
+    public Integer getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(String utilisateur) {
+    public void setUtilisateur(Integer utilisateur) {
         this.utilisateur = utilisateur;
     }
 

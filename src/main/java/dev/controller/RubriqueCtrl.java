@@ -2,9 +2,11 @@ package dev.controller;
 
 import dev.controller.dto.RubriqueDTO;
 import dev.controller.dto.RubriqueLibelleDTO;
+import dev.entite.Utilisateur;
 import dev.entite.forum.Rubrique;
 import dev.exception.CreateException;
 import dev.service.RubriqueService;
+import dev.service.UtilisateurService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,11 +23,14 @@ import java.util.Optional;
 @RequestMapping("rubriques")
 public class RubriqueCtrl {
     private RubriqueService rubriqueService;
+    private UtilisateurService utilisateurService;
     private static final Logger LOGGER = LoggerFactory.getLogger(RubriqueCtrl.class);
 
-    public RubriqueCtrl(RubriqueService rubriqueService) {
+    public RubriqueCtrl(RubriqueService rubriqueService, UtilisateurService utilisateurService) {
         this.rubriqueService = rubriqueService;
+        this.utilisateurService = utilisateurService;
     }
+
     @GetMapping
     public ResponseEntity<?> getAllRubrique() {
         List<Rubrique> rubriques = rubriqueService.findAll();
@@ -36,7 +41,7 @@ public class RubriqueCtrl {
         } else {
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
-                    .body("Il n'y a aucune rubrique d'enregistré");
+                    .body("Aucune rubrique enregistré");
         }
     }
     @PostMapping
@@ -44,7 +49,7 @@ public class RubriqueCtrl {
         Rubrique rubrique = rubriqueService.create(rubriqueDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(rubrique);
+                .body("Ajout correctement effectué");
     }
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteRubrique(@PathVariable Integer id) {
@@ -52,17 +57,21 @@ public class RubriqueCtrl {
         if (rubrique.isPresent()) {
             Rubrique currentRubrique = rubrique.get();
             rubriqueService.deleteRubrique(currentRubrique);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("Supression correctement effectué");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
     @PatchMapping
-    public ResponseEntity<Rubrique> updateRubrique(@RequestBody RubriqueLibelleDTO rubriqueLibelleDTO) {
+    public ResponseEntity<?> updateRubrique(@RequestBody RubriqueLibelleDTO rubriqueLibelleDTO) {
         Optional<Rubrique> rubrique = rubriqueService.getByid(rubriqueLibelleDTO.getId());
         if (rubrique.isPresent()) {
             Rubrique currentRubrique = rubrique.get();
             currentRubrique.setLibelle(rubriqueLibelleDTO.getLibelle());
-            return ResponseEntity.ok(rubriqueService.saveRubrique(currentRubrique));
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("Modification correctement effectué");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

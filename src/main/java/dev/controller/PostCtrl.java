@@ -3,6 +3,8 @@ package dev.controller;
 import dev.controller.dto.PostDTO;
 import dev.entite.forum.Post;
 import dev.service.PostService;
+import dev.service.TopicService;
+import dev.service.UtilisateurService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,13 @@ import java.util.Optional;
 public class PostCtrl {
     private PostService postService;
 
-    public PostCtrl(PostService postService) {
+    private TopicService topicService;
+    private UtilisateurService utilisateurService;
+
+    public PostCtrl(PostService postService, TopicService topicService, UtilisateurService utilisateurService) {
         this.postService = postService;
+        this.topicService = topicService;
+        this.utilisateurService = utilisateurService;
     }
 
     @GetMapping

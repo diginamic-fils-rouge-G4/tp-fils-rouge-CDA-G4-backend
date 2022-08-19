@@ -28,21 +28,21 @@ public class PostService {
 
     public Post create(@Valid PostDTO postDTO) {
         List<String> errMsg = new ArrayList<>();
-        Optional<Topic> topic = topicService.findById(Integer.parseInt(postDTO.getTopic()));
+        Optional<Topic> topic = topicService.findById(postDTO.getTopic());
 
         if(topic.isEmpty()) {
-            errMsg.add("Le topic " + topicService.findById(Integer.parseInt(postDTO.getTopic())) + " n'existe pas");
+            errMsg.add("Le topic " + topicService.findById(postDTO.getTopic()) + " n'existe pas");
         }
 
-        Optional<Utilisateur> utilisateur = utilisateurService.getByid(Integer.parseInt(postDTO.getUtilisateur()));
+        Optional<Utilisateur> utilisateur = utilisateurService.getByid(postDTO.getUtilisateur());
 
         if(utilisateur.isEmpty()) {
-            errMsg.add("L'utilisateur " + utilisateurService.getByid(Integer.parseInt(postDTO.getUtilisateur())) + " n'existe pas");
+            errMsg.add("L'utilisateur " + utilisateurService.getByid(postDTO.getUtilisateur()) + " n'existe pas");
         }
 
-        if(!errMsg.isEmpty()) {
-            throw new CreateException(errMsg);
-        }
+//        if(!errMsg.isEmpty()) {
+//            throw new CreateException(errMsg);
+//        }
 
         Post post = new Post();
         post.setContent(postDTO.getContent());

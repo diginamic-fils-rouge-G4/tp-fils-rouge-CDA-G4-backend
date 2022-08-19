@@ -1,9 +1,17 @@
 package dev.controller.dto;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotBlank;
+
 public class TopicModifDTO {
+    @NotBlank
     private Integer id;
+    @NotBlank
     private Integer rubrique;
+    @NotBlank
     private String libelle;
+    @NotBlank
+    private Integer utilisateur;
 
     public TopicModifDTO() {
     }
@@ -30,6 +38,14 @@ public class TopicModifDTO {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public Integer getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Integer utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     @Override

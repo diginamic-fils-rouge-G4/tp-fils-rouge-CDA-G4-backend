@@ -35,7 +35,7 @@ public class TopicService {
             errMsg.add("La rubrique " + topicDTO.getRubrique() + " n'existe pas");
         }
 
-        Optional<Utilisateur> utilisateur = utilisateurService.getByMail(topicDTO.getUtilisateur());
+        Optional<Utilisateur> utilisateur = utilisateurService.getByid(topicDTO.getUtilisateur());
 
         if(utilisateur.isEmpty()) {
             errMsg.add("L'utilisateur " + topicDTO.getUtilisateur() + " n'existe pas");
