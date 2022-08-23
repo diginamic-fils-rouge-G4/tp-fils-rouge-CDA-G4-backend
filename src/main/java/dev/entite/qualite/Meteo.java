@@ -1,6 +1,7 @@
 package dev.entite.qualite;
 
 import dev.entite.BaseEntite;
+import dev.entite.lieu.Station;
 import dev.entite.lieu.Ville;
 
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Meteo extends BaseEntite {
      * Voir {@link dev.entite.lieu.Ville}
      */
     @ManyToMany
-    private List<Ville> villes = new ArrayList<>();
+    private List<Station> stations = new ArrayList<>();
 
     // Constructeur
     public Meteo() {
@@ -65,11 +66,11 @@ public class Meteo extends BaseEntite {
         this.heure = heure;
     }
 
-    public List<Ville> getVilles() {
-        return villes;
+    public List<Station> getStations() {
+        return stations;
     }
 
-    public void setVilles(List<Ville> villes) {
-        this.villes = villes;
+    public void setStations(List<Station> stations) {
+        this.stations = stations;
     }
 }
