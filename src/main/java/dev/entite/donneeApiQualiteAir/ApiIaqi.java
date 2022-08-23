@@ -21,6 +21,22 @@ public class ApiIaqi {
      */
     Pm25 Pm25;
     /**
+     * Le polluant Pm10
+     */
+    Pm10 Pm10;
+    /**
+     * Le polluant SO2
+     */
+    SO2 SO2 ;
+    /**
+     * Le polluant NO2
+     */
+    NO2 No2;
+    /**
+     * Le polluant O3
+     */
+    O3 O3;
+    /**
      * Le polluant T
      */
     T T;
@@ -61,6 +77,38 @@ public class ApiIaqi {
 
     public dev.entite.donneeApiQualiteAir.polluant.T getT() {
         return T;
+    }
+
+    public dev.entite.donneeApiQualiteAir.polluant.SO2 getSO2() {
+        return SO2;
+    }
+
+    public void setSO2(dev.entite.donneeApiQualiteAir.polluant.SO2 SO2) {
+        this.SO2 = SO2;
+    }
+
+    public NO2 getNo2() {
+        return No2;
+    }
+
+    public void setNo2(NO2 no2) {
+        No2 = no2;
+    }
+
+    public dev.entite.donneeApiQualiteAir.polluant.Pm10 getPm10() {
+        return Pm10;
+    }
+
+    public void setPm10(dev.entite.donneeApiQualiteAir.polluant.Pm10 pm10) {
+        Pm10 = pm10;
+    }
+
+    public dev.entite.donneeApiQualiteAir.polluant.O3 getO3() {
+        return O3;
+    }
+
+    public void setO3(dev.entite.donneeApiQualiteAir.polluant.O3 o3) {
+        O3 = o3;
     }
 
     public void setT(dev.entite.donneeApiQualiteAir.polluant.T t) {

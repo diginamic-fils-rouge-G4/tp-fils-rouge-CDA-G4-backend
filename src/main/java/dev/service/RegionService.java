@@ -2,7 +2,9 @@ package dev.service;
 
 import dev.entite.lieu.Region;
 import dev.repository.RegionRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegionService {
     private RegionRepository regionRepository;
 

@@ -5,7 +5,9 @@ import dev.entite.lieu.Ville;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -21,11 +23,11 @@ public class Meteo extends BaseEntite {
     /**
      * La date des données météo
      */
-    private LocalDateTime date;
+    private LocalDate date;
     /**
      * L'heure des données météo
      */
-    private LocalDateTime heure;
+    private LocalTime heure;
     /**
      * Relation many to many avec les villes <br/>
      * Jointure bdd = meteo_villes <br/>
@@ -47,19 +49,19 @@ public class Meteo extends BaseEntite {
         this.mesure = mesure;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public LocalDateTime getHeure() {
+    public LocalTime getHeure() {
         return heure;
     }
 
-    public void setHeure(LocalDateTime heure) {
+    public void setHeure(LocalTime heure) {
         this.heure = heure;
     }
 
