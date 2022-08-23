@@ -34,7 +34,7 @@ public class APIGeoCtrl {
     public ResponseEntity<?> getAllStations(@RequestParam String lat,
                                             @RequestParam String lon) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(apiGeoService.getCityByGeo(lat, lon).getBody());
+                .body(apiGeoService.getCityByGeo(lat, lon));
     }
 
 }

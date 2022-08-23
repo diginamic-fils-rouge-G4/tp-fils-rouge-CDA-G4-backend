@@ -1,76 +1,66 @@
 package dev.entite.donneeApiQualiteAir;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApiGeo {
-    /**
-     * Le nom de la ville
-     */
-    private String name;
-    /**
-     * La latitude de la ville
-     */
-    private float lat;
-    /**
-     * Le La longitude la ville de la ville
-     */
-    private float lon;
-    /**
-     * Le payé de la ville
-     */
-    private String country;
-    /**
-     * L'état de la ville
-     */
-    private String state;
+    private String code;
+    private String nom;
+    List< Object > codesPostaux = new ArrayList< Object >();
+    private float population;
+    ApiDepartement Departement;
+    ApiRegion Region;
 
-    public String getName() {
-        return name;
+
+    // Getter Methods
+
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNom() {
+        return nom;
     }
 
-    public float getLat() {
-        return lat;
+    public float getPopulation() {
+        return population;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public List<Object> getCodesPostaux() {
+        return codesPostaux;
     }
 
-    public float getLon() {
-        return lon;
+// Setter Methods
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getCountry() {
-        return country;
+    public void setPopulation(float population) {
+        this.population = population;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCodesPostaux(List<Object> codesPostaux) {
+        this.codesPostaux = codesPostaux;
     }
 
-    public String getState() {
-        return state;
-    }
-    public void setState(String state) {
-        this.state = state;
+    public ApiDepartement getDepartement() {
+        return Departement;
     }
 
+    public void setDepartement(ApiDepartement departement) {
+        Departement = departement;
+    }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("ApiGeo{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", lat=").append(lat);
-        sb.append(", lon=").append(lon);
-        sb.append(", country='").append(country).append('\'');
-        sb.append(", state='").append(state).append('\'');
-        sb.append('}');
-        return sb.toString();
+    public ApiRegion getRegion() {
+        return Region;
+    }
+
+    public void setRegion(ApiRegion region) {
+        Region = region;
     }
 }

@@ -9,17 +9,16 @@ import org.springframework.web.client.RestTemplate;
 public class APIGeoService {
 
     private RestTemplate restTemplate;
-    private final String token_api = "7802a0de66c1782d81dadaced12330c8";
 
     public APIGeoService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public ResponseEntity<ApiGeo[]> getCityByGeo(String lat , String lon) {
-        String url = "http://api.openweathermap.org/geo/1.0/reverse?lat="+lat+"&lon="+lon+"&limit=5&appid="+this.token_api ;
+    public ResponseEntity<ApiGeo[]>  getCityByGeo(String lat , String lon) {
+        String url = "https://geo.api.gouv.fr/communes?lat="+lat+"&lon="+lon+"&fields=code,nom,codesPostaux,population,departement,region";
 
         /*this.restTemplate.getForObject(url, JSONArray.class);*/
-        return restTemplate.getForEntity( url,ApiGeo[].class);
+        return restTemplate.getForEntity( url, ApiGeo[].class);
     }
 
 }
