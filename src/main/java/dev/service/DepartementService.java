@@ -18,4 +18,8 @@ public class DepartementService {
         return departementRepository.findByNom(nom);
     }
 
+    public Departement create(Departement departement) {
+            return departementRepository.save(departement);
+    }
+
 }

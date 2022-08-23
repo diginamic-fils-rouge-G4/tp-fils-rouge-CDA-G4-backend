@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *  Controller utilisé pour la gestion des Rubriques <br/>
+ *  Controlleur utilisé pour la gestion des Rubriques <br/>
  *  Utilise le service : {@link dev.service.APIQualiteAirService}
  */
 @CrossOrigin
@@ -31,7 +31,7 @@ public class RubriqueCtrl {
 
     /**
      * Récupère la totalité des Rubriques
-     * @return
+     * @return Liste de rubrique
      */
     @GetMapping
     public ResponseEntity<?> getAllRubrique() {

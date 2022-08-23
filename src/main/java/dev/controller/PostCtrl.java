@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- *  Controller utilisé pour la gestion des Posts <br/>
+ *  Controlleur utilisé pour la gestion des Posts <br/>
  *  Utilise le service : {@link dev.service.PostService}
  */
 @CrossOrigin
@@ -27,7 +27,7 @@ public class PostCtrl {
 
     /**
      * Récupère la totalité des posts
-     * @return
+     * @return une liste de tout les posts
      */
     @GetMapping
     public ResponseEntity<?> getAllPosts() {
@@ -42,9 +42,9 @@ public class PostCtrl {
     }
 
     /**
-     * Créé un POST
+     * Créé un post
      * @param postDTO
-     * @return
+     * @return body = "Message envoyé"
      */
     @PostMapping
     public ResponseEntity<?> create(@RequestBody PostDTO postDTO) {
@@ -53,9 +53,9 @@ public class PostCtrl {
     }
 
     /**
-     * Supprime un POST à partir de son id
+     * Supprime un post à partir de son id
      * @param id
-     * @return
+     * @return http status 200
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {

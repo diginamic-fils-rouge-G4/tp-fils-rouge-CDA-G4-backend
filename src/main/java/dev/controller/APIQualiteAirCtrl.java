@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- *  Controller utilisé pour appeler les requêtes pour l'api sur la qualité de l'air <br/>
+ *  Controlleur utilisé pour appeler les requêtes de l'api sur la qualité de l'air <br/>
  *  Utilise le service : {@link dev.service.APIQualiteAirService}
  */
 @CrossOrigin
@@ -26,8 +26,8 @@ public class APIQualiteAirCtrl {
 
     /**
      * Récupère les informations de qualité de l'air d'une ville selon le nom de celle-ci
-     * @param nom
-     * @return
+     * @param nom nom de la ville
+     * @return les datas de l'api
      */
     @GetMapping("ville/{nom}")
     @ResponseBody
@@ -43,7 +43,7 @@ public class APIQualiteAirCtrl {
      * @param lng1
      * @param lat2
      * @param lng2
-     * @return
+     * @return toute les stations correspondante
      */
     @GetMapping("latlng")
     @ResponseBody
@@ -57,12 +57,11 @@ public class APIQualiteAirCtrl {
     }
 
     /**
-     * Récupère une station et ses informations sur la qualité de l'air à l'aide de ses coordonnées <br/>
-     * géographiques. Cette méthode est utilisée lorsque l'on click sur un marqueur représentant une <br/>
-     * station
+     * Récupère une station et ses informations sur la qualité de l'air à l'aide de ses coordonnées géographiques.<br/>
+     * Cette méthode est utilisée lorsque l'on click sur un marqueur représentant une station<br/>
      * @param lat
      * @param lng
-     * @return
+     * @return une station et ses informations sur la qualité de l'air
      */
     @GetMapping("markerClick")
     @ResponseBody
@@ -75,8 +74,8 @@ public class APIQualiteAirCtrl {
 
     /**
      * Récupère une station et ses informations sur la qualité de l'air à l'aide de son nom
-     * @param station
-     * @return
+     * @param station nom de la station
+     * @return une station et ses informations sur la qualité de l'air
      */
     @GetMapping("station/{station}")
     @ResponseBody
