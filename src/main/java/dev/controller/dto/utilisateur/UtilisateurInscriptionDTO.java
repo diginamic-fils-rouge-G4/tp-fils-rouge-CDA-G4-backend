@@ -6,12 +6,33 @@ import org.springframework.stereotype.Component;
  * DTO d'utilisateur utilisé pour l'inscription d'un utilisateur
  */
 public class UtilisateurInscriptionDTO {
+    /**
+     * Nom de l'utilisateur
+     */
     String  nom;
+    /**
+     * Prenom de l'utilisateur
+     */
     String  prenom;
+    /**
+     * Ville de l'utilisateur
+     */
     String  ville;
+    /**
+     * Code postal de l'utilisateur
+     */
     String  codePostal;
+    /**
+     * Email de l'utilisateur
+     */
     String  email;
+    /**
+     * Mot de passe de l'utilisateur
+     */
     String  password;
+    /**
+     * Role de l'utilisateur
+     */
     String role;
 
     // Constructor

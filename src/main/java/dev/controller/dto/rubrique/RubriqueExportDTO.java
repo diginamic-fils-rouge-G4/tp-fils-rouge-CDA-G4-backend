@@ -10,12 +10,19 @@ import java.util.List;
  *  Cette DTO est utilisé en place de RubriqueAdminExport
  */
 public class RubriqueExportDTO {
+    /**
+     * Id de la Rubrique
+     */
     private Integer id;
 
-    // Libelle de la rubrique
+    /**
+     * Libellé de la Rubrique
+     */
     private String libelle;
 
-    // Nombre de topic présent dans la rubrique
+    /**
+     * Nombre de topic présent dans la rubrique
+     */
     private Integer nbreTopics;
 
     // Constructor

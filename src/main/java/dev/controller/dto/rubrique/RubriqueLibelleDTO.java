@@ -7,7 +7,13 @@ import javax.validation.constraints.NotBlank;
  */
 public class RubriqueLibelleDTO {
 
+    /**
+     * Id de la Rubrique
+     */
     private Integer id;
+    /**
+     * Nouveau libelle de la rubrique
+     */
     @NotBlank
     private String libelle;
 

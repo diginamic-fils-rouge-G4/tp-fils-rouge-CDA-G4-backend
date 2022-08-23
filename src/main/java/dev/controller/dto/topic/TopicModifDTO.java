@@ -4,8 +4,17 @@ package dev.controller.dto.topic;
  * DTO de Topic utilisée pour changer la "Rubrique" où ce trouve le topic
  */
 public class TopicModifDTO {
+    /**
+     * Id du topic
+     */
     private Integer id;
+    /**
+     * Nouvelle rubrique du topic
+     */
     private Integer rubrique;
+    /**
+     * Nouveau libelle du topic
+     */
     private String libelle;
 
     // Constructor

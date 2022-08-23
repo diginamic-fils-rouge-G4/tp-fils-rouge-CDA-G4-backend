@@ -7,8 +7,17 @@ import dev.entite.Utilisateur;
  *  Cette DTO est utilisé en place de UtilisateurAdminExport
  */
 public class UtilisateurExportDTO {
+    /**
+     * Id de l'utilisateur
+     */
     private Integer id;
+    /**
+     * Nom de l'utilisateur
+     */
     private String nom;
+    /**
+     * Prenom de l'utilisateur
+     */
     private String prenom;
 
     // Constructor
