@@ -1,10 +1,25 @@
 package dev.entite.donneeApiQualiteAir;
 
 public class ApiGeo {
+    /**
+     * Le nom de la ville
+     */
     private String name;
+    /**
+     * La latitude de la ville
+     */
     private float lat;
+    /**
+     * Le La longitude la ville de la ville
+     */
     private float lon;
+    /**
+     * Le payé de la ville
+     */
     private String country;
+    /**
+     * L'état de la ville
+     */
     private String state;
 
     public String getName() {

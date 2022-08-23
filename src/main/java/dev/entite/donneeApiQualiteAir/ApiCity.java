@@ -2,11 +2,27 @@ package dev.entite.donneeApiQualiteAir;
 
 import java.util.ArrayList;
 
+/**
+ * Classe pour la définition la Ville dans le data
+ * retourné par l'API
+ */
 public class ApiCity {
 
+    /**
+     * Les coordonnées géographiques de la ville
+     */
     ArrayList< Object > geo = new ArrayList < Object > ();
+    /**
+     * Le nom de la ville
+     */
     private String name;
+    /**
+     * L'URL de la ville
+     */
     private String url;
+    /**
+     * La location de la ville
+     */
     private String location;
 
 

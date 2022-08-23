@@ -15,8 +15,17 @@ public class ApiData {
      * L'idx de la station
      */
     private float idx;
+    /**
+     * La ville de la station
+     */
     ApiCity City;
+    /**
+     * Les scores des polluants de la station
+     */
     ApiIaqi Iaqi;
+    /**
+     * L'heure de pris des polluants de station
+     */
     ApiTime Time;
 
     public float getAqi() {
