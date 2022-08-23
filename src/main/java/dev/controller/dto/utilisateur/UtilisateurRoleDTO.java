@@ -4,7 +4,13 @@ package dev.controller.dto.utilisateur;
  * DTO d'utilisateur utilisé pour changer le rôle d'un utilisateur
  */
 public class UtilisateurRoleDTO {
+    /**
+     * Id de l'utilisateur
+     */
     private Integer id;
+    /**
+     * Role de l'utilisateur
+     */
     private String role;
 
     // Constructor

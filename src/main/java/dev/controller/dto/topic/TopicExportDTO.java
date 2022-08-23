@@ -10,12 +10,24 @@ import javax.validation.constraints.NotBlank;
  *  DTO utilisé pour afficher les données de "Topic" au FRONT
  */
 public class TopicExportDTO {
+    /**
+     * Id du topic
+     */
     @NotBlank
     private Integer id;
+    /**
+     * Libelle du Topic
+     */
     @NotBlank
     private String libelle;
+    /**
+     * Utilisateur qui à créé le Topic
+     */
     @NotBlank
     private UtilisateurExportDTO utilisateur;
+    /**
+     * Les Posts présents dans le topic
+     */
     @NotBlank
     private PostExportDTO post;
 

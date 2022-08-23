@@ -6,7 +6,9 @@ package dev.controller.dto.rubrique;
  */
 public class RubriqueAdminExportDTO {
 
-    // Libelle de la rubrique
+    /**
+     * Libellé de la Rubrique
+     */
     private String libelle;
 
     // Constructor

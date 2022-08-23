@@ -9,7 +9,13 @@ import java.util.List;
  *  DTO utilisé pour la création de "Ville"
  */
 public class VilleDTO {
+    /**
+     * Nom de la ville
+     */
     private String name;
+    /**
+     * Liste des stations présente dans la ville
+     */
     private List<StationDTO> stations = new ArrayList<>();
 
     // Constructor

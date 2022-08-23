@@ -6,6 +6,9 @@ import java.util.List;
  * DTO utilisé pour la gestion des erreurs
  */
 public class ErrorDTO {
+    /**
+     * Liste de message d'erreur
+     */
     private List<String> messages;
 
     public ErrorDTO() {

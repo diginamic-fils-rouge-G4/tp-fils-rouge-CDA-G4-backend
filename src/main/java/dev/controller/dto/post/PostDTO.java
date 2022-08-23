@@ -6,10 +6,19 @@ import javax.validation.constraints.NotBlank;
  *  DTO utilisé pour la création de "Post"
  */
 public class PostDTO {
+    /**
+     * Contenu du Post
+     */
     @NotBlank
     private String content;
+    /**
+     * Utilisateur qui a posté le Post
+     */
     @NotBlank
     private String utilisateur;
+    /**
+     * Topic dans lequel se trouve le post
+     */
     @NotBlank
     private String topic;
 

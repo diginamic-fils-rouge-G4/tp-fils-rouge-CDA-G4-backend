@@ -7,8 +7,10 @@ import dev.entite.Utilisateur;
  * actuellement UtilisateurExportDTO est utilisé à la place
  */
 public class UtilisateurAdminExportDTO extends UtilisateurExportDTO{
-
-   private String Role;
+    /**
+     * Role de l'utilisateur
+     */
+    private String Role;
 
    // Constructor
     public UtilisateurAdminExportDTO(String role) {

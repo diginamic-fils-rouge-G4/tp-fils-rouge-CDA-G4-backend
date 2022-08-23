@@ -11,12 +11,19 @@ import java.time.LocalDateTime;
  */
 public class PostExportDTO {
 
-    // Nom de l'utilisateur qui effectué le post
+    /**
+     * Utilisateur qui a envoyé le Post
+     */
     private UtilisateurExportDTO utilisateur;
 
+    /**
+     * Id du post
+     */
     private Integer id;
 
-    // Contenue du post
+    /**
+     * Contenu du Post
+     */
     private String content;
 
     // Constructor

@@ -13,7 +13,14 @@ import java.util.List;
  */
 public class StationDTO {
 
+    /**
+     * idx de la station <br/>
+     * L'idx des stations est une id unique utilisé par l'api de qualité de l'air
+     */
     private String idx;
+    /**
+     * Nom de la station
+     */
     private String nom;
 
     // Constructor

@@ -8,11 +8,19 @@ import java.util.Objects;
  */
 public class TopicDTO {
 
-
+    /**
+     * Libelle du Topic
+     */
     @NotBlank
     private String libelle;
+    /**
+     * Utilisateur qui à créé le Topic
+     */
     @NotBlank
     private String utilisateur;
+    /**
+     * Rubrique dans laquelle se trouve le topic
+     */
     @NotBlank
     private Integer rubrique;
 
