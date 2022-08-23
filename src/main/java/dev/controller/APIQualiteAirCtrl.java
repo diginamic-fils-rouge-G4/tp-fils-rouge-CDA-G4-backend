@@ -3,6 +3,8 @@ package dev.controller;
 import dev.entite.forum.Rubrique;
 import dev.service.APIQualiteAirService;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +31,9 @@ public class APIQualiteAirCtrl {
      */
     @GetMapping("ville/{nom}")
     @ResponseBody
-    public String getFeedCityByName(@PathVariable String nom) {
-        return apiQualiteAirService.getFeedCityByName(nom);
+    public ResponseEntity<?> getFeedCityByName(@PathVariable String nom) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(apiQualiteAirService.getFeedCityByName(nom));
     }
 
     /**
@@ -45,11 +48,12 @@ public class APIQualiteAirCtrl {
     @GetMapping("latlng")
     @ResponseBody
     // A FAIRE. Utilisé un ResponseEntity
-    public String getAllStations(@RequestParam String lat1,
+    public ResponseEntity<?> getAllStations(@RequestParam String lat1,
                                  @RequestParam String lng1,
                                  @RequestParam String lat2,
                                  @RequestParam String lng2) {
-        return apiQualiteAirService.getAllStations(lat1, lng1, lat2, lng2);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(apiQualiteAirService.getAllStations(lat1, lng1, lat2, lng2));
     }
 
     /**
@@ -63,9 +67,10 @@ public class APIQualiteAirCtrl {
     @GetMapping("markerClick")
     @ResponseBody
     // A FAIRE. Utilisé un ResponseEntity
-    public String getMarkerByClick(@RequestParam String lat,
+    public ResponseEntity<?> getMarkerByClick(@RequestParam String lat,
                                    @RequestParam String lng) {
-        return apiQualiteAirService.getMarkerByClick(lat, lng);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(apiQualiteAirService.getMarkerByClick(lat, lng));
     }
 
     /**
@@ -76,8 +81,9 @@ public class APIQualiteAirCtrl {
     @GetMapping("station/{station}")
     @ResponseBody
     // A FAIRE. Utilisé un ResponseEntity
-    public JSONObject getStationByName(@PathVariable String station) {
-        return apiQualiteAirService.getStationByName(station);
+    public ResponseEntity<?> getStationByName(@PathVariable String station) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(apiQualiteAirService.getStationByName(station));
     }
 
 }
