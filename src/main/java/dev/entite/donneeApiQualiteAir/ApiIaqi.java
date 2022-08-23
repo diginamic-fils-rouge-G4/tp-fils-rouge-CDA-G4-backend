@@ -1,15 +1,38 @@
 package dev.entite.donneeApiQualiteAir;
 
 import dev.entite.donneeApiQualiteAir.polluant.*;
-
+/**
+ * Classe pour la définition la Score Iaqi  dans le data
+ * retourné par l'API
+ */
 public class ApiIaqi {
 
+
+    /**
+     * Le polluant H
+     */
     H H;
+    /**
+     * Le polluant P
+     */
     P P;
+    /**
+     * Le polluant Pm25
+     */
     Pm25 Pm25;
+    /**
+     * Le polluant T
+     */
     T T;
+    /**
+     * Le polluant W
+     */
     W W;
+    /**
+     * Le polluant Wg
+     */
     Wg Wg;
+
 
 
     public dev.entite.donneeApiQualiteAir.polluant.H getH() {
