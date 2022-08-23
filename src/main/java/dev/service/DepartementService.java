@@ -5,6 +5,9 @@ import dev.entite.lieu.Station;
 import dev.repository.DepartementRepository;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service pour les départements
+ */
 @Service
 public class DepartementService {
 
@@ -14,10 +17,20 @@ public class DepartementService {
         this.departementRepository = departementRepository;
     }
 
+    /**
+     * Récupère un département avec son nom
+     * @param nom
+     * @return
+     */
     public Departement obtenirDepartementParNom (String nom){
         return departementRepository.findByNom(nom);
     }
 
+    /**
+     * Créé un département
+     * @param departement
+     * @return
+     */
     public Departement create(Departement departement) {
             return departementRepository.save(departement);
     }
