@@ -9,6 +9,7 @@ import dev.entite.lieu.Departement;
 import dev.entite.lieu.Region;
 import dev.entite.lieu.Station;
 import dev.entite.lieu.Ville;
+import dev.entite.qualite.Meteo;
 import dev.entite.qualite.Polluant;
 import dev.repository.StationRepository;
 import org.json.simple.JSONObject;
@@ -17,7 +18,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +32,18 @@ public class StationService {
     private VilleService villeService;
     private DepartementService departementService;
     private RegionService regionService;
-
+    private MeteoService meteoService;
     private UtilisateurService utilisateurService;
     private APIGeoService apiGeoService;
     private APIQualiteAirService apiQualiteAirService;
     private PolluantService polluantService;
 
-    public StationService(StationRepository stationRepository, VilleService villeService, DepartementService departementService, RegionService regionService, UtilisateurService utilisateurService, APIGeoService apiGeoService, APIQualiteAirService apiQualiteAirService, PolluantService polluantService) {
+    public StationService(StationRepository stationRepository, VilleService villeService, DepartementService departementService, RegionService regionService, MeteoService meteoService, UtilisateurService utilisateurService, APIGeoService apiGeoService, APIQualiteAirService apiQualiteAirService, PolluantService polluantService) {
         this.stationRepository = stationRepository;
         this.villeService = villeService;
         this.departementService = departementService;
         this.regionService = regionService;
+        this.meteoService = meteoService;
         this.utilisateurService = utilisateurService;
         this.apiGeoService = apiGeoService;
         this.apiQualiteAirService = apiQualiteAirService;
@@ -64,25 +68,28 @@ public class StationService {
 
         Station station =obtenirStationParIDX(String.valueOf(Math.round(data.getData().getIdx())));
 
-
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+        Meteo meteo = new Meteo();
         if (data.getData().getIaqi().getH() != null){
-            Polluant H = new Polluant();
-            H.setType("H");
-            H.setQualite(String.valueOf(data.getData().getIaqi().getH().getV()));
-            H.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-            station.getPolluants().add(H);
+            meteo.setH(String.valueOf(data.getData().getIaqi().getH().getV()));
+        }
+        if (data.getData().getIaqi().getP() != null){
+            meteo.setP(String.valueOf(data.getData().getIaqi().getP().getV()));
+        }
+        if (data.getData().getIaqi().getT() != null){
+            meteo.setT(String.valueOf(data.getData().getIaqi().getT().getV()));
+        }
+        if (data.getData().getIaqi().getW() != null){
+            meteo.setW(String.valueOf(data.getData().getIaqi().getW().getV()));
         }
 
-        if (data.getData().getIaqi().getP() != null){
-            Polluant P = new Polluant();
-            P.setType("P");
-            P.setQualite(String.valueOf(data.getData().getIaqi().getP().getV()));
-            P.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-            station.getPolluants().add(P);
-        }
+        meteo.setDate(LocalDate.from(LocalDateTime.parse(data.getData().getTime().getS() , formatter)));
+        meteo.setHeure(LocalTime.from(LocalDateTime.parse(data.getData().getTime().getS() , formatter)));
+
+        station.getMeteos().add(meteo);
+        meteo.setStation(station);
+        meteoService.createMeteo(meteo);
 
         if (data.getData().getIaqi().getPm25() != null){
             Polluant Pm25 = new Polluant();
@@ -91,34 +98,39 @@ public class StationService {
             Pm25.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
             station.getPolluants().add(Pm25);
         }
-
-        if (data.getData().getIaqi().getT() != null){
-            Polluant T = new Polluant();
-            T.setType("T");
-            T.setQualite(String.valueOf(data.getData().getIaqi().getT().getV()));
-            T.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-            station.getPolluants().add(T);
+        if (data.getData().getIaqi().getPm10() != null){
+            Polluant Pm10 = new Polluant();
+            Pm10.setType("Pm10");
+            Pm10.setQualite(String.valueOf(data.getData().getIaqi().getPm10().getV()));
+            Pm10.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+            station.getPolluants().add(Pm10);
         }
-
-        if (data.getData().getIaqi().getW() != null){
-            Polluant W = new Polluant();
-            W.setType("W");
-            W.setQualite(String.valueOf(data.getData().getIaqi().getW().getV()));
-            W.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-            station.getPolluants().add(W);
+        if (data.getData().getIaqi().getSO2() != null){
+            Polluant SO2 = new Polluant();
+            SO2.setType("SO2");
+            SO2.setQualite(String.valueOf(data.getData().getIaqi().getSO2().getV()));
+            SO2.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+            station.getPolluants().add(SO2);
         }
-
-        if (data.getData().getIaqi().getWg() != null){
-            Polluant Wg = new Polluant();
-            Wg.setType("Wg");
-            Wg.setQualite(String.valueOf(data.getData().getIaqi().getWg().getV()));
-            Wg.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-            station.getPolluants().add(Wg);
+        if (data.getData().getIaqi().getNo2() != null){
+            Polluant No2 = new Polluant();
+            No2.setType("No2");
+            No2.setQualite(String.valueOf(data.getData().getIaqi().getNo2().getV()));
+            No2.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+            station.getPolluants().add(No2);
+        }
+        if (data.getData().getIaqi().getO3() != null){
+            Polluant O3 = new Polluant();
+            O3.setType("O3");
+            O3.setQualite(String.valueOf(data.getData().getIaqi().getO3().getV()));
+            O3.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+            station.getPolluants().add(O3);
         }
 
         for (Polluant polluant : station.getPolluants()) {
             polluantService.createPolluant(polluant);
         }
+
 
     }
 
@@ -144,6 +156,62 @@ public class StationService {
 
             ResponseEntity<ApiGeo[]> ListVille = apiGeoService.getCityByGeo(data.getData().getCity().getGeo().get(0).toString(), data.getData().getCity().getGeo().get(1).toString());
 
+            Meteo meteo = new Meteo();
+            if (data.getData().getIaqi().getH() != null){
+                meteo.setH(String.valueOf(data.getData().getIaqi().getH().getV()));
+            }
+            if (data.getData().getIaqi().getP() != null){
+                meteo.setP(String.valueOf(data.getData().getIaqi().getP().getV()));
+            }
+            if (data.getData().getIaqi().getT() != null){
+                meteo.setT(String.valueOf(data.getData().getIaqi().getT().getV()));
+            }
+            if (data.getData().getIaqi().getW() != null){
+                meteo.setW(String.valueOf(data.getData().getIaqi().getW().getV()));
+            }
+
+            meteo.setDate(LocalDate.from(LocalDateTime.parse(data.getData().getTime().getS() , formatter)));
+            meteo.setHeure(LocalTime.from(LocalDateTime.parse(data.getData().getTime().getS() , formatter)));
+
+            station.getMeteos().add(meteo);
+            meteo.setStation(station);
+            meteoService.createMeteo(meteo);
+
+            if (data.getData().getIaqi().getPm25() != null){
+                Polluant Pm25 = new Polluant();
+                Pm25.setType("Pm25");
+                Pm25.setQualite(String.valueOf(data.getData().getIaqi().getPm25().getV()));
+                Pm25.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+                station.getPolluants().add(Pm25);
+            }
+            if (data.getData().getIaqi().getPm10() != null){
+                Polluant Pm10 = new Polluant();
+                Pm10.setType("Pm10");
+                Pm10.setQualite(String.valueOf(data.getData().getIaqi().getPm10().getV()));
+                Pm10.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+                station.getPolluants().add(Pm10);
+            }
+            if (data.getData().getIaqi().getSO2() != null){
+                Polluant SO2 = new Polluant();
+                SO2.setType("SO2");
+                SO2.setQualite(String.valueOf(data.getData().getIaqi().getSO2().getV()));
+                SO2.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+                station.getPolluants().add(SO2);
+            }
+            if (data.getData().getIaqi().getNo2() != null){
+                Polluant No2 = new Polluant();
+                No2.setType("No2");
+                No2.setQualite(String.valueOf(data.getData().getIaqi().getNo2().getV()));
+                No2.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+                station.getPolluants().add(No2);
+            }
+            if (data.getData().getIaqi().getO3() != null){
+                Polluant O3 = new Polluant();
+                O3.setType("O3");
+                O3.setQualite(String.valueOf(data.getData().getIaqi().getO3().getV()));
+                O3.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
+                station.getPolluants().add(O3);
+            }
 
             for (Polluant polluant : station.getPolluants()) {
                 polluantService.createPolluant(polluant);
@@ -164,41 +232,6 @@ public class StationService {
                 ville.setPopulation(0);
                 ville.setNom(ListVille.getBody()[0].getNom());
                 ville.setCodePostal(ListVille.getBody()[0].getCodesPostaux().get(0).toString());
-
-                if (data.getData().getIaqi().getH() != null){
-                    Polluant H = new Polluant();
-                    H.setType("H");
-                    H.setQualite(String.valueOf(data.getData().getIaqi().getH().getV()));
-                    H.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-                    station.getPolluants().add(H);
-                }
-
-                if (data.getData().getIaqi().getT() != null){
-                    Polluant T = new Polluant();
-                    T.setType("T");
-                    T.setQualite(String.valueOf(data.getData().getIaqi().getT().getV()));
-                    T.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-                    station.getPolluants().add(T);
-                }
-
-                if (data.getData().getIaqi().getP() != null){
-                    Polluant P = new Polluant();
-                    P.setType("P");
-                    P.setQualite(String.valueOf(data.getData().getIaqi().getP().getV()));
-                    P.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-                    station.getPolluants().add(P);
-                }
-
-
-                if (data.getData().getIaqi().getW() != null){
-                    Polluant W = new Polluant();
-                    W.setType("W");
-                    W.setQualite(String.valueOf(data.getData().getIaqi().getW().getV()));
-                    W.setDate(LocalDateTime.parse(data.getData().getTime().getS() , formatter));
-                    station.getPolluants().add(W);
-                }
-
-
                 Departement departement = departementService.obtenirDepartementParNom(ListVille.getBody()[0].getDepartement().getNom());
                 if (departement == null){
                     departement = new Departement();

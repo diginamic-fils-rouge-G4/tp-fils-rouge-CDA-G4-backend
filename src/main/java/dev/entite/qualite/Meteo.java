@@ -6,6 +6,7 @@ import dev.entite.lieu.Ville;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,9 +19,21 @@ import java.util.List;
 @Entity
 public class Meteo extends BaseEntite {
     /**
-     * La mesure des données météo
+     * La pression des données météo
      */
-    private String mesure;
+    private String P;
+    /**
+     * La pression des données météo
+     */
+    private String H;
+    /**
+     * La pression des données météo
+     */
+    private String T;
+    /**
+     * La pression des données météo
+     */
+    private String W;
     /**
      * La date des données météo
      */
@@ -34,20 +47,46 @@ public class Meteo extends BaseEntite {
      * Jointure bdd = meteo_villes <br/>
      * Voir {@link dev.entite.lieu.Ville}
      */
-    @ManyToMany
-    private List<Station> stations = new ArrayList<>();
+    @ManyToOne
+    private Station station ;
 
     // Constructeur
     public Meteo() {
     }
 
     // Getter & Setter
-    public String getMesure() {
-        return mesure;
+
+
+    public String getP() {
+        return P;
     }
 
-    public void setMesure(String mesure) {
-        this.mesure = mesure;
+    public void setP(String p) {
+        P = p;
+    }
+
+    public String getH() {
+        return H;
+    }
+
+    public void setH(String h) {
+        H = h;
+    }
+
+    public String getT() {
+        return T;
+    }
+
+    public void setT(String t) {
+        T = t;
+    }
+
+    public String getW() {
+        return W;
+    }
+
+    public void setW(String w) {
+        W = w;
     }
 
     public LocalDate getDate() {
@@ -62,15 +101,17 @@ public class Meteo extends BaseEntite {
         return heure;
     }
 
+
+
     public void setHeure(LocalTime heure) {
         this.heure = heure;
     }
 
-    public List<Station> getStations() {
-        return stations;
+    public Station getStation() {
+        return station;
     }
 
-    public void setStations(List<Station> stations) {
-        this.stations = stations;
+    public void setStation(Station station) {
+        this.station = station;
     }
 }

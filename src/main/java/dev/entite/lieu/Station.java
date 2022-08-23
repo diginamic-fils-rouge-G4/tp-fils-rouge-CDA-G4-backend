@@ -3,12 +3,10 @@ package dev.entite.lieu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entite.BaseEntite;
 import dev.entite.Utilisateur;
+import dev.entite.qualite.Meteo;
 import dev.entite.qualite.Polluant;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -40,6 +38,11 @@ public class Station extends BaseEntite {
      */
     @ManyToMany
     private List<Polluant> polluants = new ArrayList<>();
+
+
+    @OneToMany
+    private List<Meteo> meteos = new ArrayList<>();
+
     /**
      * Relation many to many avec les utilisateurs <br/>
      * Jointure bdd = utilisateur_station <br/>
@@ -84,6 +87,14 @@ public class Station extends BaseEntite {
 
     public void setIdx(String idx) {
         this.idx = idx;
+    }
+
+    public List<Meteo> getMeteos() {
+        return meteos;
+    }
+
+    public void setMeteos(List<Meteo> meteos) {
+        this.meteos = meteos;
     }
 
     public List<dev.entite.Utilisateur> getUtilisateurs() {
