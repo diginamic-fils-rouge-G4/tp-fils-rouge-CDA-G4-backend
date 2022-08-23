@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- *  Controller utilisé pour l'api de récupération des  (https://aqicn.org/json-api/doc/) <br/>
+ *  Controlleur utilisé pour l'API de récupération des données <br/>
+ *  @see <a href="https://aqicn.org/json-api/doc/" target="blank">Doc</a> <br/>
+ *  <br/>
  *  l'api est utilisé pour récupérer les informations sur les villes <br/>
  *  Utilise le service : {@link dev.service.APIGeoService}
  */
@@ -23,8 +25,8 @@ public class APIGeoCtrl {
 
     /**
      * Récupère une ville selon ses coordonnées géographiques
-     * @param lat
-     * @param lon
+     * @param lat latitude
+     * @param lon longitude
      * @return
      */
     @GetMapping("latlng")
