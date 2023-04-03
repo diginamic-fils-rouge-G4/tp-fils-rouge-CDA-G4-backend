@@ -2,6 +2,7 @@ package dev.controller;
 
 import dev.entite.forum.Rubrique;
 import dev.service.APIQualiteAirService;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,15 +40,14 @@ public class APIQualiteAirCtrl {
     /**
      * Récupère toutes les stations et leurs informations de qualité de l'air en fonction <br/>
      * de deux ensembles de coordonnées géographiques
-     * @param lat1
-     * @param lng1
-     * @param lat2
-     * @param lng2
+     * @param lat1 String : latitude première coordonnée
+     * @param lng1 String : longitude première coordonnée
+     * @param lat2 String : latitude deuxième coordonnée
+     * @param lng2 String : longitude deuxième coordonnée
      * @return toute les stations correspondante
      */
     @GetMapping("latlng")
     @ResponseBody
-    // A FAIRE. Utilisé un ResponseEntity
     public ResponseEntity<?> getAllStations(@RequestParam String lat1,
                                  @RequestParam String lng1,
                                  @RequestParam String lat2,
@@ -59,13 +59,12 @@ public class APIQualiteAirCtrl {
     /**
      * Récupère une station et ses informations sur la qualité de l'air à l'aide de ses coordonnées géographiques.<br/>
      * Cette méthode est utilisée lorsque l'on click sur un marqueur représentant une station<br/>
-     * @param lat
-     * @param lng
+     * @param lat String : latitude de la coordonnée voulue
+     * @param lng String : longitude de la coordonnée voulue
      * @return une station et ses informations sur la qualité de l'air
      */
     @GetMapping("markerClick")
     @ResponseBody
-    // A FAIRE. Utilisé un ResponseEntity
     public ResponseEntity<?> getMarkerByClick(@RequestParam String lat,
                                    @RequestParam String lng) {
         return ResponseEntity.status(HttpStatus.OK)
@@ -79,10 +78,15 @@ public class APIQualiteAirCtrl {
      */
     @GetMapping("station/{station}")
     @ResponseBody
-    // A FAIRE. Utilisé un ResponseEntity
     public ResponseEntity<?> getStationByName(@PathVariable String station) {
+        JSONObject result = apiQualiteAirService.getStationByIdGetJSONObject(station);
+        // Si le résultat donne une erreur l'on cherche avec par le nom de la station au lieu de l'id
+        if(result.get("status").toString().equals("error")) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(apiQualiteAirService.getStationByName(station));
+        }
         return ResponseEntity.status(HttpStatus.OK)
-                .body(apiQualiteAirService.getStationByName(station));
+                .body(apiQualiteAirService.getStationByIdGetJSONObject(station));
     }
 
 }
