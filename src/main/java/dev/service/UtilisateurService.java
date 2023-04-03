@@ -36,8 +36,8 @@ public class UtilisateurService {
      */
     public void creeUtilisateur(UtilisateurInscriptionDTO utilisateurInscriptionDTO){
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setMail(utilisateurInscriptionDTO.getEmail());
         utilisateur.setNom(utilisateurInscriptionDTO.getNom());
+        utilisateur.setMail(utilisateurInscriptionDTO.getEmail());
         utilisateur.setPrenom(utilisateurInscriptionDTO.getPrenom());
         utilisateur.setRole("ROLE_USER");
         utilisateur.setPassword(passwordEncoder.encode(utilisateurInscriptionDTO.getPassword()));

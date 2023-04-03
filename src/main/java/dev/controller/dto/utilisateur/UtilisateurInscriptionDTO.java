@@ -25,7 +25,7 @@ public class UtilisateurInscriptionDTO {
     /**
      * Email de l'utilisateur
      */
-    String  email;
+    String  mail;
     /**
      * Mot de passe de l'utilisateur
      */
@@ -74,11 +74,11 @@ public class UtilisateurInscriptionDTO {
     }
 
     public String getEmail() {
-        return email;
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
@@ -104,7 +104,7 @@ public class UtilisateurInscriptionDTO {
                 ", prenom='" + prenom + '\'' +
                 ", ville='" + ville + '\'' +
                 ", codePostal='" + codePostal + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + mail + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
