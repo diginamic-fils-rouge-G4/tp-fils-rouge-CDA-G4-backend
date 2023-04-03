@@ -20,6 +20,9 @@ import java.util.*;
 @Service
 public class UtilisateurService {
     private PasswordEncoder passwordEncoder;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UtilisateurCtrl.class);
+
     /**
      * Voir {@link dev.repository.UtilisateurRepository}
      */
@@ -37,7 +40,8 @@ public class UtilisateurService {
     public void creeUtilisateur(UtilisateurInscriptionDTO utilisateurInscriptionDTO){
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(utilisateurInscriptionDTO.getNom());
-        utilisateur.setMail(utilisateurInscriptionDTO.getEmail());
+
+        utilisateur.setMail(utilisateurInscriptionDTO.getMail());
         utilisateur.setPrenom(utilisateurInscriptionDTO.getPrenom());
         utilisateur.setRole("ROLE_USER");
         utilisateur.setPassword(passwordEncoder.encode(utilisateurInscriptionDTO.getPassword()));
