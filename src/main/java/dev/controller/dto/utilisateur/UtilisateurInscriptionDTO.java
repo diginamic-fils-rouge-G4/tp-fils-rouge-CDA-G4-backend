@@ -73,11 +73,11 @@ public class UtilisateurInscriptionDTO {
         this.codePostal = codePostal;
     }
 
-    public String getEmail() {
+    public String getMail() {
         return mail;
     }
 
-    public void setEmail(String mail) {
+    public void setMail(String mail) {
         this.mail = mail;
     }
 
