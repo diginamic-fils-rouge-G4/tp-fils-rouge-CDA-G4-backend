@@ -5,6 +5,9 @@ import dev.entite.BaseEntite;
 import dev.entite.Utilisateur;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Classe pour la définition des posts <br/>
  * Se référer à {@link dev.entite.BaseEntite} pour les identifiants générés
@@ -35,6 +38,9 @@ public class Post extends BaseEntite {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Topic topic;
 
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+
     // Constructeur
     public Post() {
     }
@@ -62,5 +68,21 @@ public class Post extends BaseEntite {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

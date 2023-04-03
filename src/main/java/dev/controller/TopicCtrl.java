@@ -83,10 +83,10 @@ public class TopicCtrl {
      */
     @PostMapping
     public ResponseEntity<?> create(@RequestBody TopicDTO topicDTO) {
-        Topic topic = topicService.create(topicDTO);
+        topicService.create(topicDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("Topic correctement crée");
+                .build();
     }
 
     /**
