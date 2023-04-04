@@ -34,9 +34,9 @@ public class TopicCtrl {
      * Récupères la totalité des topics
      * @return
      */
-    @GetMapping
-    public ResponseEntity<?> getAllTopics() {
-        List<Topic> topics = topicService.findAll();
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAllTopics(@PathVariable int id) {
+        List<Topic> topics = topicService.findByRubriqueId(id);
         TopicExportDTO topicExportDTO;
         List<TopicExportDTO> topicExportDTOList = new ArrayList<>();
         for (Topic topic : topics) {

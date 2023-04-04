@@ -108,4 +108,8 @@ public class TopicService {
         }
         return null;
     }
+
+    public List<Topic> findByRubriqueId(int id) {
+        return topicRepository.findAllByRubriqueId(id);
+    }
 }
