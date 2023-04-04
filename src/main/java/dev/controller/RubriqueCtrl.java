@@ -103,12 +103,13 @@ public class RubriqueCtrl {
      * @return
      */
     @PatchMapping
-    public ResponseEntity<Rubrique> updateRubrique(@RequestBody RubriqueLibelleDTO rubriqueLibelleDTO) {
+    public ResponseEntity<?> updateRubrique(@RequestBody RubriqueLibelleDTO rubriqueLibelleDTO) {
         Optional<Rubrique> rubrique = rubriqueService.getByid(rubriqueLibelleDTO.getId());
         if (rubrique.isPresent()) {
             Rubrique currentRubrique = rubrique.get();
             currentRubrique.setLibelle(rubriqueLibelleDTO.getLibelle());
-            return ResponseEntity.ok(rubriqueService.saveRubrique(currentRubrique));
+            rubriqueService.saveRubrique(currentRubrique);
+            return ResponseEntity.status(HttpStatus.OK).build();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
