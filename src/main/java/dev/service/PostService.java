@@ -1,6 +1,7 @@
 package dev.service;
 
 import dev.controller.dto.post.PostDTO;
+import dev.controller.dto.post.PostUpdateDTO;
 import dev.entite.Utilisateur;
 import dev.entite.forum.Post;
 import dev.entite.forum.Topic;
@@ -96,5 +97,20 @@ public class PostService {
         postToDelete.setContent(post.get().getContent());
         postToDelete.setId(post.get().getId());
         postRepository.delete(postToDelete);
+    }
+
+    public List<Post> findAllByTopicId(int id) {
+        return postRepository.findAllByTopicId(id);
+    }
+
+    public Post update(PostUpdateDTO postDTO) {
+        Optional<Post> postOpt = findById(postDTO.getId());
+        if(postOpt.isPresent()) {
+            Post post = postOpt.get();
+            post.setContent(postDTO.getContent());
+            postRepository.save(post);
+            return post;
+        }
+        return null;
     }
 }
