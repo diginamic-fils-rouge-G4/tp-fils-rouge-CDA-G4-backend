@@ -66,7 +66,6 @@ public class UtilisateurCtrl {
      * @return
      */
     @PostMapping("/login")
-    @CrossOrigin
     public ResponseEntity<?> login(@RequestBody UtilisateurConnexionDTO utilisateurConnexionDTO){
        return utilisateurService.getByMail(utilisateurConnexionDTO.getEmail())
                .filter(utilisateur -> passwordEncoder.matches(utilisateurConnexionDTO.getPassword(),utilisateur.getPassword()))
@@ -83,12 +82,11 @@ public class UtilisateurCtrl {
                            .maxAge(EXPIRES_IN*1000)
                            .path("/")
                            .build();
-                   return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,tokenCookie.toString()).build();
+                   return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,tokenCookie.toString()).body("{\"token\":\""+tokenJwt.toString()+"\"}");
                }).orElseGet(() -> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
     // Admin methods
-
     /**
      * Récupère la totalité des utilisateurs
      * @return
