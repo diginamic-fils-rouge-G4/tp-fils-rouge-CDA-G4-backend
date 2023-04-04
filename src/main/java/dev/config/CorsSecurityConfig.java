@@ -17,7 +17,7 @@ public class CorsSecurityConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")
                 .allowedMethods("*")
-                .allowedHeaders("*")
+                .allowedHeaders("*").exposedHeaders("*")
                 .allowCredentials(true);
     }
 }
