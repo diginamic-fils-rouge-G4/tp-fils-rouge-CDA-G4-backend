@@ -57,7 +57,7 @@ public class UtilisateurCtrl {
         utilisateurService.creeUtilisateur(utilisateurInscriptionDTO);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body("Utilisateur créé");
+                .build();
     }
 
     /**
