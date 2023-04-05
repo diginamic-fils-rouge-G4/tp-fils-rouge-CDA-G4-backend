@@ -22,6 +22,8 @@ public class UtilisateurExportDTO {
 
     private String mail;
 
+    private String role;
+
     // Constructor
     public UtilisateurExportDTO() {
     }
@@ -31,11 +33,20 @@ public class UtilisateurExportDTO {
         this.nom = utilisateur.getNom();
         this.prenom = utilisateur.getPrenom();
         this.mail = utilisateur.getMail();
+        this.role = utilisateur.getRole();
     }
 
     // Getter & Constructor
     public Integer getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(Integer id) {
