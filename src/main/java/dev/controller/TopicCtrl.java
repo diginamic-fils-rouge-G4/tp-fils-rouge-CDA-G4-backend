@@ -139,7 +139,6 @@ public class TopicCtrl {
 
     @PatchMapping
     public TopicExportDTO patch(@RequestBody TopicModifDTO modifDTO){
-
         return new TopicExportDTO(topicService.update(modifDTO));
     }
 
