@@ -64,7 +64,7 @@ public class RubriqueCtrl {
         } else {
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
-                    .body("Il n'y a aucune rubrique d'enregistré");
+                    .build();
         }
     }
 

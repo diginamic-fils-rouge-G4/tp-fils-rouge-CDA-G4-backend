@@ -50,7 +50,7 @@ public class PostCtrl {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody PostDTO postDTO) {
         postService.create(postDTO);
-        return ResponseEntity.status(HttpStatus.OK).body("Message envoyé");
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     /**

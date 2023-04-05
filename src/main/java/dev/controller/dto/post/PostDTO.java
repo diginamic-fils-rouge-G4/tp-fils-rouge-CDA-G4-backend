@@ -20,7 +20,7 @@ public class PostDTO {
      * Topic dans lequel se trouve le post
      */
     @NotBlank
-    private String topic;
+    private Integer topic;
 
     // Constructor
     public PostDTO() {
@@ -43,11 +43,11 @@ public class PostDTO {
         this.utilisateur = utilisateur;
     }
 
-    public String getTopic() {
+    public Integer getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
+    public void setTopic(Integer topic) {
         this.topic = topic;
     }
 }
