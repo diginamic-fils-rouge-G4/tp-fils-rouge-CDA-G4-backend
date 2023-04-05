@@ -60,6 +60,7 @@ public class TopicCtrl {
             utilisateur.setId(topic.getUtilisateur().getId());
             utilisateur.setNom(topic.getUtilisateur().getNom());
             utilisateur.setPrenom(topic.getUtilisateur().getPrenom());
+            utilisateur.setMail(topic.getUtilisateur().getMail());
             topicExportDTO.setUtilisateur(utilisateur);
             if(!posts.isEmpty()) {
                 topicExportDTO.setPost(posts);

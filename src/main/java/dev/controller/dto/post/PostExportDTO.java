@@ -5,6 +5,7 @@ import dev.controller.dto.utilisateur.UtilisateurExportDTO;
 import dev.entite.forum.Post;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * DTO utilisé pour envoyer les données de "Post" qui seront afficher au FRONT
@@ -26,8 +27,8 @@ public class PostExportDTO {
      */
     private String content;
 
-    private LocalDateTime created_date;
-    private LocalDateTime updated_date;
+    private Date created_date;
+    private Date updated_date;
 
     // Constructor
     public PostExportDTO() {
@@ -64,19 +65,19 @@ public class PostExportDTO {
         this.id = id;
     }
 
-    public LocalDateTime getCreated_date() {
+    public Date getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(LocalDateTime created_date) {
+    public void setCreated_date(Date created_date) {
         this.created_date = created_date;
     }
 
-    public LocalDateTime getUpdated_date() {
+    public Date getUpdated_date() {
         return updated_date;
     }
 
-    public void setUpdated_date(LocalDateTime updated_date) {
+    public void setUpdated_date(Date updated_date) {
         this.updated_date = updated_date;
     }
 }
