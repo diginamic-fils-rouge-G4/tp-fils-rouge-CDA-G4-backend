@@ -27,8 +27,8 @@ public class PostExportDTO {
      */
     private String content;
 
-    private Date created_date;
-    private Date updated_date;
+    private LocalDateTime created_date;
+    private LocalDateTime updated_date;
 
     // Constructor
     public PostExportDTO() {
@@ -38,6 +38,8 @@ public class PostExportDTO {
         this.id = post.getId();
         this.utilisateur = new UtilisateurExportDTO(post.getUtilisateur());
         this.content = post.getContent();
+        this.created_date = post.getCreatedDate();
+        this.updated_date = post.getUpdatedDate();
     }
 
     // Getter & Setter
@@ -65,19 +67,19 @@ public class PostExportDTO {
         this.id = id;
     }
 
-    public Date getCreated_date() {
+    public LocalDateTime getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(LocalDateTime created_date) {
         this.created_date = created_date;
     }
 
-    public Date getUpdated_date() {
+    public LocalDateTime getUpdated_date() {
         return updated_date;
     }
 
-    public void setUpdated_date(Date updated_date) {
+    public void setUpdated_date(LocalDateTime updated_date) {
         this.updated_date = updated_date;
     }
 }

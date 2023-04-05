@@ -10,9 +10,7 @@ import dev.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -68,8 +66,8 @@ public class PostService {
         post.setContent(postDTO.getContent());
         post.setUtilisateur(utilisateur.get());
         post.setTopic(topic.get());
-        post.setCreated_date(LocalDateTime.now());
-        post.setUpdated_date(LocalDateTime.now());
+        post.setCreatedDate(LocalDateTime.now());
+        post.setUpdatedDate(LocalDateTime.now());
         return postRepository.save(post);
     }
 
@@ -96,16 +94,11 @@ public class PostService {
      */
     public void delete(Integer id) {
         Optional<Post> post = findById(id);
-        Post postToDelete = new Post();
-        postToDelete.setTopic(post.get().getTopic());
-        postToDelete.setUtilisateur(post.get().getUtilisateur());
-        postToDelete.setContent(post.get().getContent());
-        postToDelete.setId(post.get().getId());
-        postRepository.delete(postToDelete);
+        post.ifPresent(value -> postRepository.delete(value));
     }
 
     public List<Post> findAllByTopicId(int id) {
-        return postRepository.findAllByTopicId(id);
+        return postRepository.findByTopicId(id);
     }
 
     public Post update(PostUpdateDTO postDTO) {
