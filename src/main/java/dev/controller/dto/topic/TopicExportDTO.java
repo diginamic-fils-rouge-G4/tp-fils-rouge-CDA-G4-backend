@@ -46,6 +46,12 @@ public class TopicExportDTO {
         this.post = post;
     }
 
+    public TopicExportDTO(Integer id, String libelle, RubriqueExportDTO rubrique) {
+        this.id = id;
+        this.libelle = libelle;
+        this.rubrique = rubrique;
+    }
+
     public TopicExportDTO(Integer id, String libelle, UtilisateurExportDTO utilisateur, List<PostExportDTO> post, RubriqueExportDTO rubrique) {
         this.id = id;
         this.libelle = libelle;
