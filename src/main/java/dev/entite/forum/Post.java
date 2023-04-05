@@ -1,6 +1,5 @@
 package dev.entite.forum;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entite.BaseEntite;
 import dev.entite.Utilisateur;
 
@@ -37,8 +36,10 @@ public class Post extends BaseEntite {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Topic topic;
 
-    private LocalDateTime created_date;
-    private LocalDateTime updated_date;
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
 
     // Constructeur
     public Post() {
@@ -48,8 +49,8 @@ public class Post extends BaseEntite {
         this.content = content;
         this.utilisateur = utilisateur;
         this.topic = topic;
-        this.created_date = created_date;
-        this.updated_date = updated_date;
+        this.createdDate = created_date;
+        this.updatedDate = updated_date;
     }
 
     // Getter & Setter
@@ -77,19 +78,19 @@ public class Post extends BaseEntite {
         this.topic = topic;
     }
 
-    public LocalDateTime getCreated_date() {
-        return created_date;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(LocalDateTime created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(LocalDateTime created_date) {
+        this.createdDate = created_date;
     }
 
-    public LocalDateTime getUpdated_date() {
-        return updated_date;
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdated_date(LocalDateTime updated_date) {
-        this.updated_date = updated_date;
+    public void setUpdatedDate(LocalDateTime updated_date) {
+        this.updatedDate = updated_date;
     }
 }
