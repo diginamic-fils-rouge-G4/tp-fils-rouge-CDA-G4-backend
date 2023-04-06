@@ -32,7 +32,12 @@ public class PostCtrl {
      */
     @GetMapping("/{id}")
     public ResponseEntity<?> getAllPosts(@PathVariable int id) {
-        List<PostExportDTO> posts = postService.findAllByTopicId(id).stream().map(PostExportDTO::new).toList();
+        List<PostExportDTO> posts = postService.findAllByTopicId(id).stream().map( post -> {
+            PostExportDTO postExportDTO = new PostExportDTO(post);
+            postExportDTO.setCreatedDate(post.getCreatedDate().toString());
+            postExportDTO.setUpdatedDate(post.getUpdatedDate().toString());
+            return postExportDTO;
+        }).toList();
         if(posts.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
                     .build();

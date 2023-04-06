@@ -1,11 +1,7 @@
 package dev.controller.dto.post;
 
-import dev.controller.dto.topic.TopicExportDTO;
 import dev.controller.dto.utilisateur.UtilisateurExportDTO;
 import dev.entite.forum.Post;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * DTO utilisé pour envoyer les données de "Post" qui seront afficher au FRONT
@@ -27,8 +23,8 @@ public class PostExportDTO {
      */
     private String content;
 
-    private LocalDateTime created_date;
-    private LocalDateTime updated_date;
+    private String createdDate;
+    private String updatedDate;
 
     // Constructor
     public PostExportDTO() {
@@ -38,8 +34,14 @@ public class PostExportDTO {
         this.id = post.getId();
         this.utilisateur = new UtilisateurExportDTO(post.getUtilisateur());
         this.content = post.getContent();
-        this.created_date = post.getCreatedDate();
-        this.updated_date = post.getUpdatedDate();
+    }
+
+    public PostExportDTO(Post post, String createdDate, String updatedDate) {
+        this.id = post.getId();
+        this.utilisateur = new UtilisateurExportDTO(post.getUtilisateur());
+        this.content = post.getContent();
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     // Getter & Setter
@@ -67,19 +69,19 @@ public class PostExportDTO {
         this.id = id;
     }
 
-    public LocalDateTime getCreated_date() {
-        return created_date;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_date(LocalDateTime created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public LocalDateTime getUpdated_date() {
-        return updated_date;
+    public String getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdated_date(LocalDateTime updated_date) {
-        this.updated_date = updated_date;
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }
