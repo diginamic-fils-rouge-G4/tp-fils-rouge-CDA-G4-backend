@@ -10,6 +10,7 @@ import dev.repository.PostRepository;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,16 +46,16 @@ public class PostService {
      */
     public Post create(@Valid PostDTO postDTO) {
         List<String> errMsg = new ArrayList<>();
-        Optional<Topic> topic = topicService.findById(Integer.parseInt(postDTO.getTopic()));
+        Optional<Topic> topic = topicService.findById(postDTO.getTopic());
 
         if(topic.isEmpty()) {
-            errMsg.add("Le topic " + topicService.findById(Integer.parseInt(postDTO.getTopic())) + " n'existe pas");
+            errMsg.add("Le topic " + topicService.findById(postDTO.getTopic()) + " n'existe pas");
         }
 
-        Optional<Utilisateur> utilisateur = utilisateurService.getByid(Integer.parseInt(postDTO.getUtilisateur()));
+        Optional<Utilisateur> utilisateur = utilisateurService.getByMail(postDTO.getUtilisateur());
 
         if(utilisateur.isEmpty()) {
-            errMsg.add("L'utilisateur " + utilisateurService.getByid(Integer.parseInt(postDTO.getUtilisateur())) + " n'existe pas");
+            errMsg.add("L'utilisateur " + utilisateurService.getByMail(postDTO.getUtilisateur()) + " n'existe pas");
         }
 
         if(!errMsg.isEmpty()) {
@@ -65,6 +66,8 @@ public class PostService {
         post.setContent(postDTO.getContent());
         post.setUtilisateur(utilisateur.get());
         post.setTopic(topic.get());
+        post.setCreatedDate(LocalDateTime.now());
+        post.setUpdatedDate(LocalDateTime.now());
         return postRepository.save(post);
     }
 
@@ -91,16 +94,11 @@ public class PostService {
      */
     public void delete(Integer id) {
         Optional<Post> post = findById(id);
-        Post postToDelete = new Post();
-        postToDelete.setTopic(post.get().getTopic());
-        postToDelete.setUtilisateur(post.get().getUtilisateur());
-        postToDelete.setContent(post.get().getContent());
-        postToDelete.setId(post.get().getId());
-        postRepository.delete(postToDelete);
+        post.ifPresent(value -> postRepository.delete(value));
     }
 
     public List<Post> findAllByTopicId(int id) {
-        return postRepository.findAllByTopicId(id);
+        return postRepository.findByTopicId(id);
     }
 
     public Post update(PostUpdateDTO postDTO) {

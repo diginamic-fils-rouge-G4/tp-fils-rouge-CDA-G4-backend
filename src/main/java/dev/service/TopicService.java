@@ -99,7 +99,7 @@ public class TopicService {
         Optional<Topic> optionalTopic = findById(topicModifDTO.getId());
         Optional<Rubrique> optionalRubrique = rubriqueService.getByid(topicModifDTO.getRubrique());
 
-        if (optionalTopic.isPresent()&&optionalTopic.isPresent()){
+        if (optionalTopic.isPresent() && optionalRubrique.isPresent()){
             Topic topic = optionalTopic.get();
             topic.setRubrique(optionalRubrique.get());
             topic.setLibelle(topicModifDTO.getLibelle());

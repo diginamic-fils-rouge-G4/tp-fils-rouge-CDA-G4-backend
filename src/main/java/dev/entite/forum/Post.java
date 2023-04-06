@@ -1,10 +1,11 @@
 package dev.entite.forum;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entite.BaseEntite;
 import dev.entite.Utilisateur;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 /**
  * Classe pour la définition des posts <br/>
  * Se référer à {@link dev.entite.BaseEntite} pour les identifiants générés
@@ -35,8 +36,21 @@ public class Post extends BaseEntite {
     @ManyToOne(cascade = {CascadeType.ALL})
     private Topic topic;
 
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
+    @Column(name = "updated_date")
+    private LocalDateTime updatedDate;
+
     // Constructeur
     public Post() {
+    }
+
+    public Post(String content, Utilisateur utilisateur, Topic topic, LocalDateTime created_date, LocalDateTime updated_date) {
+        this.content = content;
+        this.utilisateur = utilisateur;
+        this.topic = topic;
+        this.createdDate = created_date;
+        this.updatedDate = updated_date;
     }
 
     // Getter & Setter
@@ -62,5 +76,21 @@ public class Post extends BaseEntite {
 
     public void setTopic(Topic topic) {
         this.topic = topic;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime created_date) {
+        this.createdDate = created_date;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updated_date) {
+        this.updatedDate = updated_date;
     }
 }

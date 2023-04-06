@@ -20,6 +20,10 @@ public class UtilisateurExportDTO {
      */
     private String prenom;
 
+    private String mail;
+
+    private String role;
+
     // Constructor
     public UtilisateurExportDTO() {
     }
@@ -28,11 +32,21 @@ public class UtilisateurExportDTO {
         this.id = utilisateur.getId();
         this.nom = utilisateur.getNom();
         this.prenom = utilisateur.getPrenom();
+        this.mail = utilisateur.getMail();
+        this.role = utilisateur.getRole();
     }
 
     // Getter & Constructor
     public Integer getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setId(Integer id) {
@@ -53,6 +67,14 @@ public class UtilisateurExportDTO {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     @Override

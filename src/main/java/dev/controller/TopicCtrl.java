@@ -1,6 +1,7 @@
 package dev.controller;
 
 import dev.controller.dto.post.PostExportDTO;
+import dev.controller.dto.rubrique.RubriqueExportDTO;
 import dev.controller.dto.topic.TopicDTO;
 import dev.controller.dto.topic.TopicExportDTO;
 import dev.controller.dto.topic.TopicModifDTO;
@@ -59,9 +60,10 @@ public class TopicCtrl {
             utilisateur.setId(topic.getUtilisateur().getId());
             utilisateur.setNom(topic.getUtilisateur().getNom());
             utilisateur.setPrenom(topic.getUtilisateur().getPrenom());
+            utilisateur.setMail(topic.getUtilisateur().getMail());
             topicExportDTO.setUtilisateur(utilisateur);
             if(!posts.isEmpty()) {
-                topicExportDTO.setPost(posts.get(posts.size() - 1));
+                topicExportDTO.setPost(posts);
             }
             topicExportDTOList.add(topicExportDTO);
         }
@@ -86,7 +88,33 @@ public class TopicCtrl {
         Topic topic = topicService.create(topicDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("Topic correctement crée");
+                .build();
+    }
+
+    @GetMapping("/one/{id}")
+    public ResponseEntity<?> getOne(@PathVariable int id) {
+        Optional<Topic> topicOpt = topicService.findById(id);
+        if(topicOpt.isPresent()) {
+            TopicExportDTO topic = new TopicExportDTO(topicOpt.get());
+            topic.setId(topicOpt.get().getId());
+            RubriqueExportDTO rubriqueExportDTO = new RubriqueExportDTO(topicOpt.get().getRubrique());
+            topic.setRubrique(rubriqueExportDTO);
+            UtilisateurExportDTO utilisateurExportDTO = new UtilisateurExportDTO(topicOpt.get().getUtilisateur());
+            topic.setUtilisateur(utilisateurExportDTO);
+            topic.setLibelle(topicOpt.get().getLibelle());
+            List<PostExportDTO> postExportDTOS = new ArrayList<>();
+            for (Post post : topicOpt.get().getPosts()) {
+                postExportDTOS.add(new PostExportDTO(post));
+            }
+            topic.setPost(postExportDTOS);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(topic);
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .build();
+        }
     }
 
     /**
@@ -111,7 +139,6 @@ public class TopicCtrl {
 
     @PatchMapping
     public TopicExportDTO patch(@RequestBody TopicModifDTO modifDTO){
-
         return new TopicExportDTO(topicService.update(modifDTO));
     }
 

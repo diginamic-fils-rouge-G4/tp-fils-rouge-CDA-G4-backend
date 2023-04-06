@@ -1,10 +1,12 @@
 package dev.controller.dto.topic;
 
 import dev.controller.dto.post.PostExportDTO;
+import dev.controller.dto.rubrique.RubriqueExportDTO;
 import dev.controller.dto.utilisateur.UtilisateurExportDTO;
 import dev.entite.forum.Topic;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 /**
  *  DTO utilisé pour afficher les données de "Topic" au FRONT
@@ -29,15 +31,36 @@ public class TopicExportDTO {
      * Les Posts présents dans le topic
      */
     @NotBlank
-    private PostExportDTO post;
+    private List<PostExportDTO> post;
+
+    @NotBlank
+    private RubriqueExportDTO rubrique;
 
     public TopicExportDTO() {
     }
-    public TopicExportDTO(Topic topic) {
-        this.id = topic.getId();
-        this.libelle = topic.getLibelle();
-        this.utilisateur = new UtilisateurExportDTO(topic.getUtilisateur());
-        this.post = new PostExportDTO(topic.getPosts().get(topic.getPosts().size()-1));
+
+    public TopicExportDTO(Integer id, String libelle, UtilisateurExportDTO utilisateur, List<PostExportDTO> post) {
+        this.id = id;
+        this.libelle = libelle;
+        this.utilisateur = utilisateur;
+        this.post = post;
+    }
+
+    public TopicExportDTO(Integer id, String libelle, RubriqueExportDTO rubrique) {
+        this.id = id;
+        this.libelle = libelle;
+        this.rubrique = rubrique;
+    }
+
+    public TopicExportDTO(Integer id, String libelle, UtilisateurExportDTO utilisateur, List<PostExportDTO> post, RubriqueExportDTO rubrique) {
+        this.id = id;
+        this.libelle = libelle;
+        this.utilisateur = utilisateur;
+        this.post = post;
+        this.rubrique = rubrique;
+    }
+
+    public TopicExportDTO(Topic update) {
     }
 
     public Integer getId() {
@@ -64,11 +87,19 @@ public class TopicExportDTO {
         this.utilisateur = utilisateur;
     }
 
-    public PostExportDTO getPost() {
+    public List<PostExportDTO> getPost() {
         return post;
     }
 
-    public void setPost(PostExportDTO post) {
+    public void setPost(List<PostExportDTO> post) {
         this.post = post;
+    }
+
+    public RubriqueExportDTO getRubrique() {
+        return rubrique;
+    }
+
+    public void setRubrique(RubriqueExportDTO rubrique) {
+        this.rubrique = rubrique;
     }
 }

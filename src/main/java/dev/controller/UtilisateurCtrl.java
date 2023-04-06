@@ -136,6 +136,16 @@ public class UtilisateurCtrl {
         }
     }
 
+    @GetMapping("/utilisateurs/{mail}")
+    public ResponseEntity<?> getByMail(@PathVariable String mail) {
+        Optional<Utilisateur> utilisateur = utilisateurService.getByMail(mail);
+        if(utilisateur.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(utilisateur);
+        } else {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+    }
+
     /**
      * Récupère les utilisateurs et les affiches en multiple page de 30 utilisateurs
      * @param page
