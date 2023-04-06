@@ -33,7 +33,7 @@ public class Post extends BaseEntite {
      * Id dans table post = topic_id <br/>
      * Voir {@link dev.entite.forum.Topic}
      */
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Topic topic;
 
     @Column(name = "created_date")
