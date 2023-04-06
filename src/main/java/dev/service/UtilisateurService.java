@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,9 @@ public class UtilisateurService {
      * Création d'un utilisateur
      * @param utilisateurInscriptionDTO
      */
-    public void creeUtilisateur(UtilisateurInscriptionDTO utilisateurInscriptionDTO){
+    public HttpStatus creeUtilisateur(UtilisateurInscriptionDTO utilisateurInscriptionDTO){
+
+        if (getByMail(utilisateurInscriptionDTO.getMail()) == null){
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(utilisateurInscriptionDTO.getNom());
 
@@ -46,6 +49,9 @@ public class UtilisateurService {
         utilisateur.setRole("ROLE_USER");
         utilisateur.setPassword(passwordEncoder.encode(utilisateurInscriptionDTO.getPassword()));
         saveUtilisateur(utilisateur);
+        return HttpStatus.OK;
+
+        }else return HttpStatus.FORBIDDEN;
     }
     /**
      * Récupère un utilisateur en fonction de son ID

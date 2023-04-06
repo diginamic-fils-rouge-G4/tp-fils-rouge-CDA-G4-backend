@@ -54,9 +54,9 @@ public class UtilisateurCtrl {
     @PostMapping("/signup")
     //@Secured("ROLE_Admin")
     public ResponseEntity<?> signup(@RequestBody UtilisateurInscriptionDTO utilisateurInscriptionDTO, HttpServletRequest req ){
-        utilisateurService.creeUtilisateur(utilisateurInscriptionDTO);
+        HttpStatus status= utilisateurService.creeUtilisateur(utilisateurInscriptionDTO);
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(status)
                 .build();
     }
 
