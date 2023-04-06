@@ -40,7 +40,7 @@ public class UtilisateurService {
      */
     public HttpStatus creeUtilisateur(UtilisateurInscriptionDTO utilisateurInscriptionDTO){
 
-        if (getByMail(utilisateurInscriptionDTO.getMail()) == null){
+        if ( Optional.empty().equals(getByMail(utilisateurInscriptionDTO.getMail()))){
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(utilisateurInscriptionDTO.getNom());
 
